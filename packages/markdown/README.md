@@ -41,7 +41,7 @@ export default function InlineContent() {
 
 ### External content
 
-_Note: The `children` value is ignored when you set `src`_
+If you specify `src`, the content will be loaded from that URL and the `children` prop is ignored.
 
 ```jsx
 import React from 'react';
@@ -49,7 +49,10 @@ import Markdown from '@loopmode/markdown';
 
 export default function ExternalContent() {
     return (
-        <Markdown children="# Nope. Ignored." src="https://raw.githubusercontent.com/facebook/react/master/README.md" />
+        <Markdown
+            children="# Nope. Ignored."
+            src="https://raw.githubusercontent.com/facebook/react/master/README.md"
+        />
     );
 }
 ```

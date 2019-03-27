@@ -4,6 +4,8 @@ A react component for displaying markdown content with code highlighting.
 
 Uses [react-remarkable](https://www.npmjs.com/package/react-remarkable) and [prismjs](https://npmjs.com/package/prismjs) (via [@loopmode/codeblock](https://npmjs.com/package/@loopmode/codeblock)) under the hood.
 
+Any code blocks in the markdown content will have syntax highlighting applied.
+
 ## Installation
 
 ```bash
@@ -16,11 +18,12 @@ npm install --save @loopmode/markdown
 
 - You can pass a string of markdown content directly via `children`.
 - Alternatively, you can specify a `src` prop and have the content loaded from that URL
-- You can change the prismjs theme by specifying the `prismTheme` prop.
+- You can change the prismjs theme with the `prismTheme` prop
+- Pass options for `remarkable` with the `remarkableOptions` prop
 
 ### Inline content
 
-_Note: Content provided via `children` should be of type `String`_
+_Note: The `children` value should be a `String`_
 
 ```jsx
 import React from 'react';
@@ -28,23 +31,17 @@ import Markdown from '@loopmode/markdown';
 
 export default function InlineContent() {
     return (
-        <Markdown>{`
-            ## Markdown via react-remarkable
-
-            Provides all features of "react-remarkable", e.g. table rendering and git-flavored markdown.
-
-            ## Syntax highlighing via prismjs
-
-            Supports all prismjs languages, automatically applied to code-blocks defined with triple-backticks.
-
-        `}</Markdown>
+        <>
+        <Markdown>{`# Yay markdown!`}</Markdown>
+        <Markdown children={`# Yay markdown!`} />
+        </>
     );
 }
 ```
 
 ### External content
 
-_Note: Any `children` are ignored when you specify a `src` URL_
+_Note: The `children` value is ignored when you set `src`_
 
 ```jsx
 import React from 'react';
@@ -52,14 +49,15 @@ import Markdown from '@loopmode/markdown';
 
 export default function ExternalContent() {
     return (
-        <Markdown src="https://raw.githubusercontent.com/facebook/react/master/README.md" />
+        <Markdown children="# Nope. Ignored." src="https://raw.githubusercontent.com/facebook/react/master/README.md" />
     );
 }
 ```
 
 ### Example: embedded README
 
-Uses [raw.macro](https://www.npmjs.com/package/raw.macro) to embed the markdown and a dark-ish prismjs theme:
+Uses [raw.macro](https://www.npmjs.com/package/raw.macro) to embed the contents of a localmarkdown file and renders it, using a dark theme for syntax highlighing:
+
 
 ```jsx
 import React from 'react';
@@ -77,9 +75,40 @@ export default function ThemedReadme() {
 
 ```
 
-## Notes
+_Note: `raw.macro` is pretty cool - you can embed files from outside the `src` folder!_
+
+### window.fetch and loadExternal
+
+Auto-loading content via `src` uses `window.fetch()` by default.
+If you need to support older browsers, you can either provide a fetch polyfill or a custom `loadExternal` function.
+
+A custom `loadExternal` function is pretty easy to create:
+
+```javascript
+const loadExternal = (url, callback) => {
+    axios.get(url)
+        .then(response => callback(response.data));
+}
+```
+
+- The signature is `(url: String, callback: Function): Function`
+- Invoke the callback with the result string once you have it
+- Optionally return a function
+
+The loader may return a function to cancel pending requests when the requesting component gets unmounted.
+For example, using axios, it would be something like [this](https://github.com/axios/axios#cancellation):
+
+```javascript
+const loadExternal = (url, callback) => {
+    const {token: cancelToken, cancel} = axios.CancelToken.source();
+    axios.get(url, {cancelToken})
+        .then(response => callback(response.data));
+    return cancel
+}
+```
+
+## Requirements
 
 - Requires react version 16.8.0 or newer (hooks support)
 - Your project should support dynamic `import()` statements so that prismjs languages can be loaded on-demand
 - You should not use multiple prismjs themes, because its global stylesheets will interfere with each other
-- Auto-loading via `src` prop requires `window.fetch()`. For older browsers, provide a polyfill or a custom `loadExternal` function (e.g. using `axios`, `superagent`, etc)

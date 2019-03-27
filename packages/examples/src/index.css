@@ -12,3 +12,18 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+.App {
+    padding: 40px;
+}
+
+.App > nav ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style: none;
+}
+
+.App > nav li + li {
+    margin-left: 20px;
+}

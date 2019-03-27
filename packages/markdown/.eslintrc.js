@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 module.exports = {
     extends: '@loopmode/react',
     settings: {
@@ -10,7 +11,7 @@ module.exports = {
         'prettier/prettier': [
             'warn',
             {
-                ...JSON.parse(fs.readFileSync('./.prettierrc'))
+                ...JSON.parse(fs.readFileSync(`${__dirname}/.prettierrc`))
             }
         ]
     }

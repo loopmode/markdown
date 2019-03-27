@@ -11,15 +11,15 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-var _reactRemarkable = _interopRequireDefault(require("react-remarkable"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _usePrism = _interopRequireDefault(require("@loopmode/codeblock/lib/hooks/usePrism"));
 
 var _useContent = _interopRequireDefault(require("./hooks/useContent"));
 
-var _fetchExternal = _interopRequireDefault(require("./utils/fetchExternal"));
+var _useRemarkable = _interopRequireDefault(require("./hooks/useRemarkable"));
 
-var _Markdown = _interopRequireDefault(require("./Markdown.styled"));
+var _fetchExternal = _interopRequireDefault(require("./utils/fetchExternal"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,36 +29,59 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    table {\n        display: block;\n        overflow-x: auto;\n        white-space: nowrap;\n    }\n    table td,\n    table th {\n        padding: 5px;\n        border-bottom: 1px solid #eee;\n    }\n    table thead th {\n        border-bottom: 1px solid #ccc;\n    }\n\n    &.boxed {\n        padding: 20px;\n        border: 1px solid #e0e0e0;\n        border-radius: 3px;\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 Markdown.propTypes = {
   children: _propTypes.default.string,
   className: _propTypes.default.string,
-  prismTheme: _propTypes.default.string,
   loadExternal: _propTypes.default.func,
-  src: _propTypes.default.string
+  src: _propTypes.default.string,
+  boxed: _propTypes.default.bool,
+  prismTheme: _propTypes.default.string,
+  remarkableOptions: _propTypes.default.object
 };
 Markdown.defaultProps = {
-  loadExternal: _fetchExternal.default
+  loadExternal: _fetchExternal.default,
+  prismTheme: 'prism',
+  remarkableOptions: {}
 };
+Markdown.Styled = _styledComponents.default.div(_templateObject());
 
 function Markdown(_ref) {
   var children = _ref.children,
       src = _ref.src,
       loadExternal = _ref.loadExternal,
       className = _ref.className,
-      _ref$prismTheme = _ref.prismTheme,
-      theme = _ref$prismTheme === void 0 ? 'prism' : _ref$prismTheme,
-      props = _objectWithoutProperties(_ref, ["children", "src", "loadExternal", "className", "prismTheme"]);
+      boxed = _ref.boxed,
+      prismTheme = _ref.prismTheme,
+      remarkableOptions = _ref.remarkableOptions,
+      props = _objectWithoutProperties(_ref, ["children", "src", "loadExternal", "className", "boxed", "prismTheme", "remarkableOptions"]);
 
   var ref = _react.default.useRef(null);
 
+  var content = (0, _useContent.default)(children, src, loadExternal);
+  var html = (0, _useRemarkable.default)(content, remarkableOptions);
   (0, _usePrism.default)(ref, {
-    theme: theme,
+    theme: prismTheme,
     isContainer: true
   });
-  return _react.default.createElement(_Markdown.default, {
-    className: (0, _classnames.default)('Markdown', className),
-    ref: ref
-  }, _react.default.createElement(_reactRemarkable.default, _extends({}, props, {
-    children: (0, _useContent.default)(children, src, loadExternal)
-  })));
+  return _react.default.createElement(Markdown.Styled, _extends({}, props, {
+    ref: ref,
+    className: (0, _classnames.default)('Markdown', className, {
+      boxed: boxed
+    }),
+    dangerouslySetInnerHTML: {
+      __html: html
+    }
+  }));
 }

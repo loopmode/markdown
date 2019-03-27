@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "name": "@loopmode/markdown-workspace",
+    "version": "1.0.0",
+    "license": "MIT",
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@loopmode/babel7-base": "^1.1.0",
+        "lerna": "^3.13.1"
+    }
+}

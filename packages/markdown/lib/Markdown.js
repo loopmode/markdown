@@ -55,6 +55,7 @@ Markdown.propTypes = {
   remarkableOptions: _propTypes.default.object
 };
 Markdown.defaultProps = {
+  children: undefined,
   loader: undefined,
   src: undefined,
   boxed: undefined,

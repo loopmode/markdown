@@ -1,3 +1,7 @@
+### 1.2.1
+
+- Do not pass `children` when using `dangerouslySetInnerHTML`
+
 ### 1.2.0
 
 - Drop local content loading code, use `@loopmode/use-content` instead

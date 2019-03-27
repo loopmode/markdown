@@ -18,6 +18,7 @@ Markdown.propTypes = {
 };
 
 Markdown.defaultProps = {
+    children: undefined,
     loader: undefined,
     src: undefined,
     boxed: undefined,

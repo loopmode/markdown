@@ -80,15 +80,15 @@ export default function ThemedReadme() {
 
 _Note: `raw.macro` is pretty cool - you can embed files from outside the `src` folder!_
 
-### window.fetch and loadExternal
+### window.fetch and custom loader
 
 Auto-loading content via `src` uses `window.fetch()` by default.
-If you need to support older browsers, you can either provide a fetch polyfill or a custom `loadExternal` function.
+If you need to support older browsers, you can either provide a fetch polyfill or a custom `loader` function.
 
-A custom `loadExternal` function is pretty easy to create:
+A custom `loader` function is pretty easy to create:
 
 ```javascript
-const loadExternal = (url, callback) => {
+const loader = (url, callback) => {
     axios.get(url)
         .then(response => callback(response.data));
 }
@@ -102,7 +102,7 @@ The loader may return a function to cancel pending requests when the requesting 
 For example, using axios, it would be something like [this](https://github.com/axios/axios#cancellation):
 
 ```javascript
-const loadExternal = (url, callback) => {
+const loader = (url, callback) => {
     const {token: cancelToken, cancel} = axios.CancelToken.source();
     axios.get(url, {cancelToken})
         .then(response => callback(response.data));

@@ -1611,10 +1611,10 @@
     prettier "1.16.4"
     replace-in-file "^3.4.0"
 
-"@loopmode/codeblock@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@loopmode/codeblock/-/codeblock-1.0.1.tgz#eff3b58e7fb88d0509a49e811864dfc5491f4330"
-  integrity sha512-Ovdwh4nUTVrscBghixuvTOZzBAmJ2ke0NpRDO1Sm6jyeWCzK/I1kqM3IOWFXHiC8IjoHlviFRCcyP0U+K5s9xQ==
+"@loopmode/codeblock@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@loopmode/codeblock/-/codeblock-1.0.2.tgz#018b26ab56f0dc17d53927de78ae0b566710ebbd"
+  integrity sha512-T8nBSZCjRXxpxcDRJvAW5aT0oSHXLU5oHaDy4ygj8eFfvh+bRZaPj8GYZIrCtKS7YwndTxLDpAc3j3taaSZjWg==
   dependencies:
     "@loopmode/use-content" "^1.1.1"
     classnames "^2.2.6"

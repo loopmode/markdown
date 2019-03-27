@@ -15,19 +15,23 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _usePrism = _interopRequireDefault(require("@loopmode/codeblock/lib/hooks/usePrism"));
 
-var _useContent = _interopRequireDefault(require("./hooks/useContent"));
+var _useContent = _interopRequireDefault(require("@loopmode/use-content"));
 
 var _useRemarkable = _interopRequireDefault(require("./hooks/useRemarkable"));
 
-var _fetchExternal = _interopRequireDefault(require("./utils/fetchExternal"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    table {\n        display: block;\n        overflow-x: auto;\n        white-space: nowrap;\n    }\n    table td,\n    table th {\n        padding: 5px;\n        border-bottom: 1px solid #eee;\n    }\n    table thead th {\n        border-bottom: 1px solid #ccc;\n    }\n\n    &.boxed {\n        padding: 20px;\n        border: 1px solid #e0e0e0;\n        border-radius: 3px;\n    }\n"]);
@@ -44,44 +48,52 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 Markdown.propTypes = {
   children: _propTypes.default.string,
   className: _propTypes.default.string,
-  loadExternal: _propTypes.default.func,
+  loader: _propTypes.default.func,
   src: _propTypes.default.string,
   boxed: _propTypes.default.bool,
   prismTheme: _propTypes.default.string,
   remarkableOptions: _propTypes.default.object
 };
 Markdown.defaultProps = {
-  loadExternal: _fetchExternal.default,
-  prismTheme: 'prism',
-  remarkableOptions: {}
+  loader: undefined,
+  src: undefined,
+  boxed: undefined,
+  prismTheme: undefined,
+  remarkableOptions: undefined
 };
 Markdown.Styled = _styledComponents.default.div(_templateObject());
 
-function Markdown(_ref) {
-  var children = _ref.children,
-      src = _ref.src,
-      loadExternal = _ref.loadExternal,
-      className = _ref.className,
-      boxed = _ref.boxed,
-      prismTheme = _ref.prismTheme,
-      remarkableOptions = _ref.remarkableOptions,
-      props = _objectWithoutProperties(_ref, ["children", "src", "loadExternal", "className", "boxed", "prismTheme", "remarkableOptions"]);
-
+function Markdown(props) {
   var ref = _react.default.useRef(null);
 
-  var content = (0, _useContent.default)(children, src, loadExternal);
-  var html = (0, _useRemarkable.default)(content, remarkableOptions);
+  var content = (0, _useContent.default)(props.children, props);
+  var html = (0, _useRemarkable.default)(content, props.remarkableOptions);
   (0, _usePrism.default)(ref, {
-    theme: prismTheme,
+    theme: props.prismTheme,
     isContainer: true
   });
-  return _react.default.createElement(Markdown.Styled, _extends({}, props, {
+  return _react.default.createElement(Markdown.Styled, _extends({}, getForeignProps(props), {
     ref: ref,
-    className: (0, _classnames.default)('Markdown', className, {
-      boxed: boxed
+    className: (0, _classnames.default)('Markdown', props.className, {
+      boxed: props.boxed
     }),
     dangerouslySetInnerHTML: {
       __html: html
     }
   }));
+}
+
+function getForeignProps(props) {
+  var ownKeys = Object.keys(Markdown.defaultProps);
+  return Object.entries(props).reduce(function (result, _ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+
+    if (ownKeys.includes(key)) {
+      return result;
+    }
+
+    return Object.assign(result, _defineProperty({}, key, value));
+  }, {});
 }

@@ -8,6 +8,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
+                    <h1>@loopmode/markdown examples</h1>
                     <nav>
                         <ul>
                             <li>

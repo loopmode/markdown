@@ -4,14 +4,13 @@ import cx from 'classnames';
 import styled from 'styled-components';
 
 import usePrism from '@loopmode/codeblock/lib/hooks/usePrism';
-import useContent from './hooks/useContent';
+import useContent from '@loopmode/use-content';
 import useRemarkable from './hooks/useRemarkable';
-import fetchExternal from './utils/fetchExternal';
 
 Markdown.propTypes = {
     children: PropTypes.string,
     className: PropTypes.string,
-    loadExternal: PropTypes.func,
+    loader: PropTypes.func,
     src: PropTypes.string,
     boxed: PropTypes.bool,
     prismTheme: PropTypes.string,
@@ -19,9 +18,11 @@ Markdown.propTypes = {
 };
 
 Markdown.defaultProps = {
-    loadExternal: fetchExternal,
-    prismTheme: 'prism',
-    remarkableOptions: {}
+    loader: undefined,
+    src: undefined,
+    boxed: undefined,
+    prismTheme: undefined,
+    remarkableOptions: undefined
 };
 
 Markdown.Styled = styled.div`
@@ -46,30 +47,31 @@ Markdown.Styled = styled.div`
     }
 `;
 
-export default function Markdown({
-    children,
-    src,
-    loadExternal,
-    className,
-    boxed,
-    prismTheme,
-    remarkableOptions,
-    ...props
-}) {
+export default function Markdown(props) {
     const ref = React.useRef(null);
 
-    const content = useContent(children, src, loadExternal);
+    const content = useContent(props.children, props);
 
-    const html = useRemarkable(content, remarkableOptions);
+    const html = useRemarkable(content, props.remarkableOptions);
 
-    usePrism(ref, { theme: prismTheme, isContainer: true });
+    usePrism(ref, { theme: props.prismTheme, isContainer: true });
 
     return (
         <Markdown.Styled
-            {...props}
+            {...getForeignProps(props)}
             ref={ref}
-            className={cx('Markdown', className, { boxed })}
+            className={cx('Markdown', props.className, { boxed: props.boxed })}
             dangerouslySetInnerHTML={{ __html: html }}
         />
     );
+}
+
+function getForeignProps(props) {
+    const ownKeys = Object.keys(Markdown.defaultProps);
+    return Object.entries(props).reduce((result, [key, value]) => {
+        if (ownKeys.includes(key)) {
+            return result;
+        }
+        return Object.assign(result, { [key]: value });
+    }, {});
 }

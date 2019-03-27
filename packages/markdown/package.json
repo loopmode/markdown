@@ -1,7 +1,7 @@
 {
   "name": "@loopmode/markdown",
   "description": "React component to render markdown with code highlighting",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
@@ -12,6 +12,7 @@
   "scripts": {
     "watch": "yarn build --watch",
     "build": "babel src --out-dir lib --copy-files",
+    "clean": "rm -rf ./lib/*",
     "lint": "eslint src"
   },
   "peerDependencies": {
@@ -19,7 +20,8 @@
     "react": "^16.8.5"
   },
   "dependencies": {
-    "@loopmode/codeblock": "^0.9.3",
+    "@loopmode/codeblock": "^1.0.1",
+    "@loopmode/use-content": "^1.1.1",
     "remarkable": "^1.7.1",
     "styled-components": "^4.2.0"
   },

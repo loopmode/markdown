@@ -1611,11 +1611,12 @@
     prettier "1.16.4"
     replace-in-file "^3.4.0"
 
-"@loopmode/codeblock@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@loopmode/codeblock/-/codeblock-0.9.3.tgz#9402626f417fe1d1fd3e2a88b2186f8de294d6c4"
-  integrity sha512-B1iCkWidqzE3XcK5b07AaM72NJJ4CO4qL6Rt3reNSXWtbLUkq61G2tAixmpejucl+BHPe92E/Pi5Fw8kgDTwXw==
+"@loopmode/codeblock@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@loopmode/codeblock/-/codeblock-1.0.1.tgz#eff3b58e7fb88d0509a49e811864dfc5491f4330"
+  integrity sha512-Ovdwh4nUTVrscBghixuvTOZzBAmJ2ke0NpRDO1Sm6jyeWCzK/I1kqM3IOWFXHiC8IjoHlviFRCcyP0U+K5s9xQ==
   dependencies:
+    "@loopmode/use-content" "^1.1.1"
     classnames "^2.2.6"
     prismjs "^1.15.0"
     styled-components "^4.2.0"
@@ -1631,6 +1632,11 @@
     eslint-plugin-prettier "3.0.1"
     eslint-plugin-react "7.12.4"
     prettier "1.16.4"
+
+"@loopmode/use-content@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@loopmode/use-content/-/use-content-1.1.1.tgz#201aaeb4927a1831c9a0fb87d86a92d3dfc65c37"
+  integrity sha512-9pHjxRHQwmNOuO6bwEFywvYvN4yhGHSaCHe0jN9IMzblLYb16AQx02w7kG68YMAA9nnTVEDCMoGkaAoISbzpJQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

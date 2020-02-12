@@ -3,23 +3,25 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Markdown;
+exports["default"] = Markdown;
 
 var _react = _interopRequireDefault(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _usePrism = _interopRequireDefault(require("@loopmode/codeblock/lib/hooks/usePrism"));
-
 var _useContent = _interopRequireDefault(require("@loopmode/use-content"));
 
 var _useRemarkable = _interopRequireDefault(require("./hooks/useRemarkable"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _props = require("./props");
+
+var _hooks = require("@codeblock/react/lib/hooks");
+
+var _core = require("@codeblock/core");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -27,7 +29,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -45,37 +47,29 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-Markdown.propTypes = {
-  children: _propTypes.default.string,
-  className: _propTypes.default.string,
-  loader: _propTypes.default.func,
-  src: _propTypes.default.string,
-  boxed: _propTypes.default.bool,
-  prismTheme: _propTypes.default.string,
-  remarkableOptions: _propTypes.default.object
-};
-Markdown.defaultProps = {
-  children: undefined,
-  loader: undefined,
-  src: undefined,
-  boxed: undefined,
-  prismTheme: undefined,
-  remarkableOptions: undefined
-};
-Markdown.Styled = _styledComponents.default.div(_templateObject());
+Markdown.Styled = _styledComponents["default"].div(_templateObject());
+Markdown.propTypes = _props.propTypes;
+Markdown.defaultProps = _props.defaultProps;
 
 function Markdown(props) {
-  var ref = _react.default.useRef(null);
+  // const ref = React.useRef(null);
+  var content = (0, _useContent["default"])(props.children, props);
+  var html = (0, _useRemarkable["default"])(content, props.remarkableOptions);
 
-  var content = (0, _useContent.default)(props.children, props);
-  var html = (0, _useRemarkable.default)(content, props.remarkableOptions);
-  (0, _usePrism.default)(ref, {
-    theme: props.prismTheme,
-    isContainer: true
-  });
-  return _react.default.createElement(Markdown.Styled, _extends({}, getForeignProps(props), {
-    ref: ref,
-    className: (0, _classnames.default)('Markdown', props.className, {
+  _react["default"].useEffect(function () {
+    (0, _core.setAutoloadPath)(null);
+  }, []);
+
+  var _useCodeblock = (0, _hooks.useCodeblock)({
+    providers: props.codeblockProviders,
+    theme: props.prismTheme
+  }),
+      applyCodeblock = _useCodeblock.applyCodeblock;
+
+  return _react["default"].createElement(Markdown.Styled, _extends({}, getForeignProps(props), {
+    ref: applyCodeblock,
+    key: html,
+    className: (0, _classnames["default"])('Markdown', props.className, (0, _core.getThemeClassName)(props.prismTheme), {
       boxed: props.boxed
     }),
     dangerouslySetInnerHTML: {

@@ -18,8 +18,9 @@ npm install --save @loopmode/markdown
 
 - You can pass a string of markdown content directly via `children`.
 - Alternatively, you can specify a `src` prop and have the content loaded from that URL
-- You can change the prismjs theme with the `prismTheme` prop
 - Pass options for `remarkable` with the `remarkableOptions` prop
+- Pass providers for [`@codeblock/react`](https://www.npmjs.com/package/@codeblock/react) with the `codeblockProviders` props
+- You can change the prismjs theme used by codeblock with the `prismTheme` prop
 
 ### Inline content
 
@@ -112,6 +113,6 @@ const loader = (url, callback) => {
 
 ## Requirements
 
-- Requires react version 16.8.0 or newer (hooks support)
+- Requires react version 16.8.6 or newer (hooks support)
 - Your project should support dynamic `import()` statements so that prismjs languages can be loaded on-demand
 - You should not use multiple prismjs themes, because its global stylesheets will interfere with each other

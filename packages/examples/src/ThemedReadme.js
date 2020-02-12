@@ -21,7 +21,7 @@ export default function ThemedReadme() {
                 .
             </p>
 
-            <Markdown prismTheme="okaidia" boxed>
+            <Markdown boxed>
                 {ReadmeSource}
             </Markdown>
         </>

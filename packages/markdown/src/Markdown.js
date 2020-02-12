@@ -1,30 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styled from 'styled-components';
 
-import usePrism from '@loopmode/codeblock/lib/hooks/usePrism';
 import useContent from '@loopmode/use-content';
 import useRemarkable from './hooks/useRemarkable';
-
-Markdown.propTypes = {
-    children: PropTypes.string,
-    className: PropTypes.string,
-    loader: PropTypes.func,
-    src: PropTypes.string,
-    boxed: PropTypes.bool,
-    prismTheme: PropTypes.string,
-    remarkableOptions: PropTypes.object
-};
-
-Markdown.defaultProps = {
-    children: undefined,
-    loader: undefined,
-    src: undefined,
-    boxed: undefined,
-    prismTheme: undefined,
-    remarkableOptions: undefined
-};
+import { propTypes, defaultProps } from './props';
+import { useCodeblock } from '@codeblock/react/lib/hooks';
+import { setAutoloadPath, getThemeClassName } from '@codeblock/core';
 
 Markdown.Styled = styled.div`
     table {
@@ -48,20 +30,38 @@ Markdown.Styled = styled.div`
     }
 `;
 
+Markdown.propTypes = propTypes;
+Markdown.defaultProps = defaultProps;
+
 export default function Markdown(props) {
-    const ref = React.useRef(null);
+    // const ref = React.useRef(null);
 
     const content = useContent(props.children, props);
 
     const html = useRemarkable(content, props.remarkableOptions);
 
-    usePrism(ref, { theme: props.prismTheme, isContainer: true });
+    React.useEffect(() => {
+        setAutoloadPath(null);
+    }, []);
+
+    const { applyCodeblock } = useCodeblock({
+        providers: props.codeblockProviders,
+        theme: props.prismTheme
+    });
 
     return (
         <Markdown.Styled
             {...getForeignProps(props)}
-            ref={ref}
-            className={cx('Markdown', props.className, { boxed: props.boxed })}
+            ref={applyCodeblock}
+            key={html}
+            className={cx(
+                'Markdown',
+                props.className,
+                getThemeClassName(props.prismTheme),
+                {
+                    boxed: props.boxed
+                }
+            )}
             dangerouslySetInnerHTML={{ __html: html }}
         />
     );

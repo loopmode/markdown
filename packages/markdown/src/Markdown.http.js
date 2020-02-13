@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setAutoload, getAutoload } from '@codeblock/core';
-import emptyLanguageProvider from '@codeblock/languages/lib/empty';
-import { createHttpThemeProvider } from '@codeblock/themes/lib/utils/create-http-provider';
 
 import Markdown from './Markdown';
 import { propTypes, defaultProps } from './props';

@@ -1,7 +1,7 @@
 {
   "name": "@loopmode/markdown",
   "description": "React component to render markdown with automatic code highlighting",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {

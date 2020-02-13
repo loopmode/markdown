@@ -1094,10 +1094,10 @@
   dependencies:
     "@codeblock/core" "^2.0.5"
 
-"@codeblock/react@^2.1.8":
-  version "2.1.8"
-  resolved "https://registry.npmjs.org/@codeblock/react/-/react-2.1.8.tgz#44dcf1107d9dfc2136f319bf5111654f9e37b69b"
-  integrity sha512-/a5n4PTgZuT/63Ofnx67/pVB/3H6SzvAfIuX/yr2XBb0SMid4PjLwvLlvWJzd1/j49dcEr/7kGSI6CTPEMFD1w==
+"@codeblock/react@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/@codeblock/react/-/react-2.2.0.tgz#481cfc758b0e9e3267d1a7882ecde20e93f7229c"
+  integrity sha512-djT0wAKpqVZ98IAd0+WU0pXOR/jphJNkSG2+IxZLAh/VqsFUu+c7+KsK0s6eTB3NKy/X96yK+P95wtBw+4DFDg==
   dependencies:
     "@codeblock/core" "^2.0.5"
     "@codeblock/languages" "^2.0.6"

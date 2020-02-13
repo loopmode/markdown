@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { setAutoload } from '@codeblock/core';
 import asyncLanguageProvider from '@codeblock/languages/lib/async';
 import asyncThemeProvider from '@codeblock/themes/lib/async';
 
@@ -15,5 +16,8 @@ MarkdownAsync.defaultProps = {
     }
 };
 export default function MarkdownAsync(props) {
+    React.useEffect(() => {
+        setAutoload(null);
+    }, []);
     return <Markdown {...props} />;
 }

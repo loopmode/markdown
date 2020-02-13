@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { setAutoload } from '@codeblock/core';
 import emptyLanguageProvider from '@codeblock/languages/lib/empty';
 import emptyThemeProvider from '@codeblock/themes/lib/empty';
 
@@ -15,5 +16,8 @@ MarkdownEmpty.defaultProps = {
     }
 };
 export default function MarkdownEmpty(props) {
+    React.useEffect(() => {
+        setAutoload(null);
+    }, []);
     return <Markdown {...props} />;
 }

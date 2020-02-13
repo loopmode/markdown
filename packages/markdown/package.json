@@ -1,7 +1,7 @@
 {
   "name": "@loopmode/markdown",
   "description": "React component to render markdown with automatic code highlighting",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
@@ -10,12 +10,12 @@
     "directory": "packages/markdown"
   },
   "files": [
-      "lib",
-      "async.js",
-      "cdn.js",
-      "empty.js",
-      "http.js",
-      "static.js"
+    "lib",
+    "async.js",
+    "cdn.js",
+    "empty.js",
+    "http.js",
+    "static.js"
   ],
   "scripts": {
     "watch": "yarn build --watch",

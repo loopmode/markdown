@@ -1080,36 +1080,36 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@codeblock/core@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/@codeblock/core/-/core-2.0.4.tgz#1b289dbc933163f1009817058cc49de5aa48afe9"
-  integrity sha512-4bbHhzJB3yhq2IgUL/UiFASlwoNc5t3dPNZnp4mT9dN16DzpBrubyitkloBYrcHw9tWkN7S+iVzi4980bBuNKw==
+"@codeblock/core@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/@codeblock/core/-/core-2.0.5.tgz#f59724fa3c745f51deb3239a61cdd078a0ae698e"
+  integrity sha512-NByF7aRXqYXSF7HbsL3bX7AsYl9XzYhaGV12V5GLM2jiGXU1icjEGF/FK5GMwnd2XtdjS8YKPupenBrJWD6Lxw==
   dependencies:
     prismjs "1.19.0"
 
-"@codeblock/languages@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/@codeblock/languages/-/languages-2.0.5.tgz#075d0e5a632db38e825f57f9adcc9e940f0b4dd6"
-  integrity sha512-3zDRhcBlMErFX2jeZzy+xbn5ufx+WHfYuccziOIoGbebNGQRGcQsipewipQ684UJmFhAU7a/GKez/kyizorWBg==
+"@codeblock/languages@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/@codeblock/languages/-/languages-2.0.6.tgz#3fe5aa63e7a063724eb7c7dbe0a7da0a9578326c"
+  integrity sha512-SW2tuwdjgv8tPLCHXVj3NR4tqTyVCMHcY6CLiD2jZ+wcORhsd205WbmzSqiZ00QttaBXxj2rscfhiQVdsrRB2A==
   dependencies:
-    "@codeblock/core" "^2.0.4"
+    "@codeblock/core" "^2.0.5"
 
-"@codeblock/react@2.1.7":
-  version "2.1.7"
-  resolved "https://registry.npmjs.org/@codeblock/react/-/react-2.1.7.tgz#eb01e73a10f149af34f8276542be84c7fef118c2"
-  integrity sha512-GAd1qkRVVqIhj2QFyTbYAXUAWJr8fkgV89qq+pU2chFL1ZtPF/Ltw6VYK/1pBMUEAUeNc4PLjKKHHCfrEcuScg==
+"@codeblock/react@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/@codeblock/react/-/react-2.1.8.tgz#44dcf1107d9dfc2136f319bf5111654f9e37b69b"
+  integrity sha512-/a5n4PTgZuT/63Ofnx67/pVB/3H6SzvAfIuX/yr2XBb0SMid4PjLwvLlvWJzd1/j49dcEr/7kGSI6CTPEMFD1w==
   dependencies:
-    "@codeblock/core" "^2.0.4"
-    "@codeblock/languages" "^2.0.5"
-    "@codeblock/themes" "^2.0.5"
+    "@codeblock/core" "^2.0.5"
+    "@codeblock/languages" "^2.0.6"
+    "@codeblock/themes" "^2.0.6"
     classnames "^2.2.6"
 
-"@codeblock/themes@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/@codeblock/themes/-/themes-2.0.5.tgz#1d1a601c7071f46c3c0fcbc1f353f9ddf351c25d"
-  integrity sha512-192+sOS/IR5n6BWSOor4bJeLMLwum+iMe3q/X1Y0l+NDQS38pNlBB1oUBHks1qJ6axMfmhRCkIFHp+qnI0s0sw==
+"@codeblock/themes@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/@codeblock/themes/-/themes-2.0.6.tgz#217df8ec4f85fc2d24c1617a0e0aa221f85e8576"
+  integrity sha512-GeIEEL/mNHCf/2OcpW3vz8KgQsRszi/i0ttUdrlhhuQZPjywbm2VZhWhpvFjdtF+RGqiCqRRPYJt5AlgeDGmiQ==
   dependencies:
-    "@codeblock/core" "^2.0.4"
+    "@codeblock/core" "^2.0.5"
     jotform-css.js "^1.0.1"
 
 "@csstools/convert-colors@^1.4.0":

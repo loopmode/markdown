@@ -1,10 +1,19 @@
 import React from 'react';
-import { staticProviders } from '@codeblock/react/static';
+
+import emptyLanguageProvider from '@codeblock/languages/lib/empty';
+import emptyThemeProvider from '@codeblock/themes/lib/empty';
+
 import Markdown from './Markdown';
 import { propTypes, defaultProps } from './props';
 
-MarkdownStatic.propTypes = propTypes;
-MarkdownStatic.defaultProps = defaultProps;
-export default function MarkdownStatic(props) {
-    return <Markdown codeblockProviders={staticProviders} {...props} />;
+MarkdownEmpty.propTypes = propTypes;
+MarkdownEmpty.defaultProps = {
+    ...defaultProps,
+    codeblockProviders: {
+        themes: emptyThemeProvider,
+        languages: emptyLanguageProvider
+    }
+};
+export default function MarkdownEmpty(props) {
+    return <Markdown {...props} />;
 }

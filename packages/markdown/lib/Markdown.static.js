@@ -7,7 +7,9 @@ exports["default"] = MarkdownStatic;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _static = require("@codeblock/react/static");
+var _static = _interopRequireDefault(require("@codeblock/languages/lib/static"));
+
+var _static2 = _interopRequireDefault(require("@codeblock/themes/lib/static"));
 
 var _Markdown = _interopRequireDefault(require("./Markdown"));
 
@@ -23,7 +25,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 MarkdownStatic.propTypes = _props.propTypes;
 MarkdownStatic.defaultProps = _objectSpread({}, _props.defaultProps, {
-  codeblockProviders: _static.staticProviders
+  codeblockProviders: {
+    themes: _static2["default"],
+    languages: _static["default"]
+  }
 });
 
 function MarkdownStatic(props) {

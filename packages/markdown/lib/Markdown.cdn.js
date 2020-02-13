@@ -9,11 +9,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _core = require("@codeblock/core");
+
 var _Markdown = _interopRequireDefault(require("./Markdown.http"));
 
 var _props = require("./props");
-
-var _core = require("@codeblock/core");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 

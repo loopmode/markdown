@@ -7,7 +7,9 @@ exports["default"] = MarkdownAsync;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _async = require("@codeblock/react/async");
+var _async = _interopRequireDefault(require("@codeblock/languages/lib/async"));
+
+var _async2 = _interopRequireDefault(require("@codeblock/themes/lib/async"));
 
 var _Markdown = _interopRequireDefault(require("./Markdown"));
 
@@ -23,7 +25,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 MarkdownAsync.propTypes = _props.propTypes;
 MarkdownAsync.defaultProps = _objectSpread({}, _props.defaultProps, {
-  codeblockProviders: _async.asyncProviders
+  codeblockProviders: {
+    themes: _async2["default"],
+    languages: _async["default"]
+  }
 });
 
 function MarkdownAsync(props) {

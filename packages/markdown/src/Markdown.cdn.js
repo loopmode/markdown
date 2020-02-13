@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CDN_AUTOLOAD_PATH } from '@codeblock/core';
 
 import MarkdownHTTP from './Markdown.http';
 import { propTypes, defaultProps } from './props';
-import { CDN_AUTOLOAD_PATH } from '@codeblock/core';
 
 MarkdownCDN.propTypes = {
     prismPath: PropTypes.string,

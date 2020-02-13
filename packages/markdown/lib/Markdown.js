@@ -57,7 +57,7 @@ function Markdown(props) {
   var html = (0, _useRemarkable["default"])(content, props.remarkableOptions);
 
   _react["default"].useEffect(function () {
-    (0, _core.setAutoloadPath)(null);
+    (0, _core.setAutoload)(null);
   }, []);
 
   var _useCodeblock = (0, _hooks.useCodeblock)({

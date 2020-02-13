@@ -6,7 +6,7 @@ import useContent from '@loopmode/use-content';
 import useRemarkable from './hooks/useRemarkable';
 import { propTypes, defaultProps } from './props';
 import { useCodeblock } from '@codeblock/react/lib/hooks';
-import { setAutoloadPath, getThemeClassName } from '@codeblock/core';
+import { setAutoload, getThemeClassName } from '@codeblock/core';
 
 Markdown.Styled = styled.div`
     table {
@@ -41,7 +41,7 @@ export default function Markdown(props) {
     const html = useRemarkable(content, props.remarkableOptions);
 
     React.useEffect(() => {
-        setAutoloadPath(null);
+        setAutoload(null);
     }, []);
 
     const { applyCodeblock } = useCodeblock({

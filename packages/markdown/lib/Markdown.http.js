@@ -36,7 +36,7 @@ MarkdownHTTP.defaultProps = _props.defaultProps;
 
 function MarkdownHTTP(props) {
   _react["default"].useEffect(function () {
-    (0, _core.setAutoloadPath)(props.prismPath);
+    (0, _core.setAutoload)(props.prismPath);
   }, [props.prismPath]);
 
   var httpProviders = _react["default"].useMemo(function () {

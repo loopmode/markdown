@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setAutoloadPath } from '@codeblock/core';
+import { setAutoload } from '@codeblock/core';
 import emptyLanguageProvider from '@codeblock/languages/lib/empty';
 import { createHttpThemeProvider } from '@codeblock/themes/lib/utils/create-http-provider';
 
@@ -14,7 +14,7 @@ MarkdownHTTP.propTypes = {
 MarkdownHTTP.defaultProps = defaultProps;
 export default function MarkdownHTTP(props) {
     React.useEffect(() => {
-        setAutoloadPath(props.prismPath);
+        setAutoload(props.prismPath);
     }, [props.prismPath]);
 
     const httpProviders = React.useMemo(() => {

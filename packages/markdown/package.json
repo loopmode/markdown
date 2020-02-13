@@ -9,18 +9,27 @@
     "url": "https://github.com/loopmode/markdown",
     "directory": "packages/markdown"
   },
+  "files": [
+      "lib",
+      "async.js",
+      "cdn.js",
+      "empty.js",
+      "http.js",
+      "static.js"
+  ],
   "scripts": {
     "watch": "yarn build --watch",
     "build": "babel src --out-dir lib --copy-files",
     "clean": "rm -rf ./lib/*",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prepublishOnly": "yarn clean && yarn lint && yarn build"
   },
   "peerDependencies": {
     "prop-types": ">=15.0.0",
     "react": ">=16.8.6"
   },
   "dependencies": {
-    "@codeblock/react": "^2.1.8",
+    "@codeblock/react": "^2.2.0",
     "@loopmode/use-content": "^1.1.3",
     "remarkable": "^1.7.1",
     "styled-components": "^4.2.0"

@@ -13,13 +13,10 @@ class App extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <Link to="/">Empty</Link>
+                                <Link to="/">Readme</Link>
                             </li>
                             <li>
-                                <Link to="/readme/">Readme</Link>
-                            </li>
-                            <li>
-                                <Link to="/readme-cdn/">Readme CDN</Link>
+                                <Link to="/cdn/">Readme CDN</Link>
                             </li>
                             <li>
                                 <Link to="/external/">External content</Link>
@@ -27,9 +24,8 @@ class App extends Component {
                         </ul>
                     </nav>
 
-                    <Route path="/" exact component={() => null} />
-                    <Route path="/readme" exact component={Readme} />
-                    <Route path="/readme-cdn" exact component={ReadmeCDN} />
+                    <Route path="/" exact component={Readme} />
+                    <Route path="/cdn" exact component={ReadmeCDN} />
                     <Route path="/external" component={ExternalContent} />
                 </div>
             </Router>

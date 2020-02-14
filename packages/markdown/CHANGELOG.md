@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.10](https://github.com/loopmode/markdown/compare/@loopmode/markdown@2.0.9...@loopmode/markdown@2.0.10) (2020-02-14)
+
+**Note:** Version bump only for package @loopmode/markdown
+
+
+
+
+
 ## [2.0.9](https://github.com/loopmode/markdown/compare/@loopmode/markdown@2.0.8...@loopmode/markdown@2.0.9) (2020-02-14)
 
 **Note:** Version bump only for package @loopmode/markdown

@@ -29,7 +29,7 @@
     "react": ">=16.8.6"
   },
   "dependencies": {
-    "@codeblock/react": "^2.2.1-alpha.1",
+    "@codeblock/react": "^2.2.1",
     "@loopmode/use-content": "^1.1.3",
     "remarkable": "^1.7.1",
     "styled-components": "^4.2.0"

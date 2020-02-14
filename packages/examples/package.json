@@ -1,6 +1,6 @@
 {
     "name": "examples",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "private": true,
     "homepage": "https://loopmode.github.io/markdown",
     "dependencies": {

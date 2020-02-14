@@ -4,6 +4,7 @@
   "version": "2.0.9",
   "main": "lib/index.js",
   "license": "MIT",
+  "homepage": "https://loopmode.github.io/markdown",
   "repository": {
     "type": "git",
     "url": "https://github.com/loopmode/markdown",

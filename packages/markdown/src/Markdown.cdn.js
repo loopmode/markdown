@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CDN_AUTOLOAD_PATH } from '@codeblock/core';
+import { CDN_AUTOLOAD_PATH } from '@codeblock/core/lib/http';
 
 import MarkdownHTTP from './Markdown.http';
 import { propTypes, defaultProps } from './props';

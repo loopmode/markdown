@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import useContent from '@loopmode/use-content';
 import useRemarkable from './hooks/useRemarkable';
 import { propTypes, defaultProps } from './props';
-import { useCodeblock } from '@codeblock/react/lib/hooks';
-import { getThemeClassName } from '@codeblock/core';
+import { usePrism } from '@codeblock/react/lib/hooks';
 
 Markdown.Styled = styled.div`
     table {
@@ -34,30 +33,26 @@ Markdown.propTypes = propTypes;
 Markdown.defaultProps = defaultProps;
 
 export default function Markdown(props) {
-    // const ref = React.useRef(null);
+    const ref = React.useRef(null);
 
     const content = useContent(props.children, props);
 
     const html = useRemarkable(content, props.remarkableOptions);
 
-    const { applyCodeblock } = useCodeblock({
+    const { themeClassName } = usePrism(ref, {
         providers: props.codeblockProviders,
-        theme: props.prismTheme
+        theme: props.prismTheme,
+        children: html
     });
 
     return (
         <Markdown.Styled
             {...getForeignProps(props)}
-            ref={applyCodeblock}
+            ref={ref}
             key={html}
-            className={cx(
-                'Markdown',
-                props.className,
-                getThemeClassName(props.prismTheme),
-                {
-                    boxed: props.boxed
-                }
-            )}
+            className={cx('Markdown', props.className, themeClassName, {
+                boxed: props.boxed
+            })}
             dangerouslySetInnerHTML={{ __html: html }}
         />
     );

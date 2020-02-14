@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Markdown from './Markdown';
 import { propTypes, defaultProps } from './props';
-import { useHTTPProvider } from '@codeblock/react/lib/hooks';
+import { useHTTPProviders } from '@codeblock/react/lib/hooks';
 
 MarkdownHTTP.propTypes = {
     prismPath: PropTypes.string.isRequired,
@@ -11,7 +11,7 @@ MarkdownHTTP.propTypes = {
 };
 MarkdownHTTP.defaultProps = defaultProps;
 export default function MarkdownHTTP(props) {
-    const httpProviders = useHTTPProvider(props.prismPath);
+    const httpProviders = useHTTPProviders(props.prismPath);
 
     return (
         httpProviders && (

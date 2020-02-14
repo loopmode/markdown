@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { setAutoload } from '@codeblock/core';
 import staticLanguageProvider from '@codeblock/languages/lib/static';
 import staticThemeProvider from '@codeblock/themes/lib/static';
 
@@ -16,8 +15,5 @@ MarkdownStatic.defaultProps = {
     }
 };
 export default function MarkdownStatic(props) {
-    React.useEffect(() => {
-        setAutoload(null);
-    }, []);
     return <Markdown {...props} />;
 }

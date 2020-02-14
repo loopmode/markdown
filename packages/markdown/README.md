@@ -2,7 +2,7 @@
 
 A react component for displaying markdown content with code highlighting.
 
-Uses [react-remarkable](https://www.npmjs.com/package/react-remarkable) and [prismjs](https://npmjs.com/package/prismjs) (via [@loopmode/codeblock](https://npmjs.com/package/@loopmode/codeblock)) under the hood.
+Uses [react-remarkable](https://www.npmjs.com/package/react-remarkable) and [prismjs](https://npmjs.com/package/prismjs) (via [@codeblock/react](https://codeblockjs.github.io/codeblock)) under the hood.
 
 Any code blocks in the markdown content will have syntax highlighting applied.
 

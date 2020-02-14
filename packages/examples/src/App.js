@@ -7,7 +7,13 @@ import ReadmeCDN from "./ReadmeCDN";
 class App extends Component {
     render() {
         return (
-            <Router>
+            <Router
+                basename={
+                    process.env.NODE_ENV === "production"
+                        ? "/markdown"
+                        : undefined
+                }
+            >
                 <div className="App">
                     <h1>@loopmode/markdown examples</h1>
                     <nav>

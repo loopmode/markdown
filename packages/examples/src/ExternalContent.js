@@ -1,20 +1,28 @@
 import React from "react";
 import Markdown from "@loopmode/markdown/lib/Markdown.cdn";
-import Codeblock from "@codeblock/react";
+import Codeblock from "@codeblock/react/cdn";
 import raw from "raw.macro";
+import Toggle from "./Toggle";
 
 export default function ExternalContent() {
     return (
         <>
-            <h1>External content example</h1>
+            <h1>External content</h1>
             <p>
-                In this example, we load the markdown directly via{" "}
-                <code>src</code> attribute
+                Loads content using the <code>src</code> attribute
             </p>
-            <h2>Example code:</h2>
-            <Codeblock language="jsx" theme="tomorrow">{raw("./ExternalContent.js")}</Codeblock>
+
+            <Toggle>
+                <Codeblock language="jsx">
+                    {raw("./ExternalContent.js")}
+                </Codeblock>
+            </Toggle>
+
             <h2>External markdown:</h2>
-            <Markdown src="https://raw.githubusercontent.com/loopmode/markdown/master/packages/markdown/README.md" />
+            <Markdown
+                prismTheme="solarizedlight"
+                src="https://raw.githubusercontent.com/loopmode/markdown/master/packages/markdown/README.md"
+            />
         </>
     );
 }

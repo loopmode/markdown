@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ThemedReadme from "./ThemedReadme";
 import ExternalContent from "./ExternalContent";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ThemedReadmeCDN from "./ThemedReadmeCDN";
+import Readme from "./Readme";
+import ReadmeCDN from "./ReadmeCDN";
 
 class App extends Component {
     render() {
@@ -13,23 +13,23 @@ class App extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <Link to="/">Home</Link>
+                                <Link to="/">Empty</Link>
                             </li>
                             <li>
-                                <Link to="/readme/">ThemedReadme</Link>
+                                <Link to="/readme/">Readme</Link>
                             </li>
                             <li>
-                                <Link to="/readme-cdn/">ThemedReadme CDN</Link>
+                                <Link to="/readme-cdn/">Readme CDN</Link>
                             </li>
                             <li>
-                                <Link to="/external/">ExternalContent</Link>
+                                <Link to="/external/">External content</Link>
                             </li>
                         </ul>
                     </nav>
 
                     <Route path="/" exact component={() => null} />
-                    <Route path="/readme" exact component={ThemedReadme} />
-                    <Route path="/readme-cdn" exact component={ThemedReadmeCDN} />
+                    <Route path="/readme" exact component={Readme} />
+                    <Route path="/readme-cdn" exact component={ReadmeCDN} />
                     <Route path="/external" component={ExternalContent} />
                 </div>
             </Router>

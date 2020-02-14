@@ -33,8 +33,13 @@ import Markdown from '@loopmode/markdown';
 export default function InlineContent() {
     return (
         <>
-        <Markdown>{`# Yay markdown!`}</Markdown>
-        <Markdown children={`# Yay markdown!`} />
+            <Markdown>{'# Yay markdown!'}</Markdown>
+            <Markdown children={'# Yay markdown!'} />
+            <Markdown>{'
+            # Yay markdown!
+            ## works
+            '}
+            </Markdown>
         </>
     );
 }
@@ -60,7 +65,7 @@ export default function ExternalContent() {
 
 ### Example: embedded README
 
-Uses [raw.macro](https://www.npmjs.com/package/raw.macro) to embed the contents of a localmarkdown file and renders it, using a dark theme for syntax highlighing:
+Uses [raw.macro](https://www.npmjs.com/package/raw.macro) to embed the contents of a local markdown file and renders it, using a dark theme for syntax highlighing:
 
 
 ```jsx
